@@ -1,1 +1,2 @@
-GithubPageBlazor
+# BlazorPage
+Persoonlijke Webpagina
