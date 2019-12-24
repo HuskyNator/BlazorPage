@@ -7,10 +7,13 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    private int currentCount = 0;
+    private int currentCount = 1;
+
+    [Parameter]
+    public int veelvoud {get; set;} = 1;
 
     private void IncrementCount()
     {
-        currentCount++;
+        currentCount*= veelvoud;
     }
 }
