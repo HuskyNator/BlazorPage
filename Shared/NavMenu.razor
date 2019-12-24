@@ -1,11 +1,16 @@
-﻿@inject NavigationManager NavigationManager
-
-<button @onclick="ToonMenu">Menu</button>
-
-<button @onclick="@(e=>verwijs("/"))">Hoofd<br>Scherm</button>
-<button @onclick="@(e=>verwijs("/Plan"))">Plan</button>
-<button @onclick="@(e=>verwijs("https://github.com/HuskyNator/BlazorPage"))">Github</button>
-<button @onclick="@(e=>verwijs("#"))">#</button>
+﻿<button @onclick="ToonMenu">Menu</button>
+<a href="/">
+    <button>Hoofd<br>Scherm</button>
+</a>
+<a href="/Plan">
+    <button>Plan</button>
+</a>
+<a href="https://github.com/HuskyNator/BlazorPage">
+    <button>Github</button>
+</a>
+<a href="#">
+    <button>#</button>
+</a>
 
 @code {
     private bool zichtbaar = true;
@@ -16,8 +21,5 @@
     {
         zichtbaar = !zichtbaar;
     }
-
-    private void verwijs(String locatie){
-        NavigationManager.NavigateTo(locatie);
-    }
+    
 }
