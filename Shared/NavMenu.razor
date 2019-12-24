@@ -1,8 +1,11 @@
-﻿<button @onclick="ToonMenu">Menu</button>
-<button href="/">Hoofd<br>Scherm</button>
-<button href="/Plan">Plan</button>
-<button href="https://github.com/HuskyNator/BlazorPage">Github</button>
-<button href="#"></button>
+﻿@inject NavigationManager NavigationManager
+
+<button @onclick="ToonMenu">Menu</button>
+
+<button @onclick="@(e=>verwijs("/"))">Hoofd<br>Scherm</button>
+<button @onclick="@(e=>verwijs("/Plan"))">Plan</button>
+<button @onclick="@(e=>verwijs("https://github.com/HuskyNator/BlazorPage"))">Github</button>
+<button @onclick="@(e=>verwijs("#"))">#</button>
 
 @code {
     private bool zichtbaar = true;
@@ -12,5 +15,9 @@
     private void ToonMenu()
     {
         zichtbaar = !zichtbaar;
+    }
+
+    private void verwijs(String locatie){
+        NavigationManager.NavigateTo(locatie);
     }
 }
