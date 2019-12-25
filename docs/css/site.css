@@ -1,4 +1,14 @@
-﻿.Scherm {
+﻿html, app {
+    height: 100%;
+    text-align: center;
+    background-color: deepskyblue;
+}
+
+body {
+    height: 40%;
+}
+
+.Scherm {
     margin: 0;
     min-height: 100%;
     height: 100%;
@@ -7,43 +17,72 @@
 
 .Lichaam {
     background-color: lightgray;
-    
-    border: 2px;
+    border: 3px;
     border-radius: 5px;
     border-style: solid;
     border-color: gray;
-    
-    margin-left: 4px;
-    padding: 2em;
-    
-    text-align: center;
+    margin-left: 8px;
+}
+
+#Plan{
+    display: grid;
+    grid-template-columns: 1fr 550px 1fr;
+    grid-template-rows: 1fr;
+}
+
+.Lichaam ul {
+    justify-content: space-around;
+    display: grid;
+    font-size: xx-large;
+    text-align: left;
+}
+
+.Lichaam h1 {
+    padding-top: 20px;
+    margin-top: 0;
+    font-size: 4em;
+}
+
+#Plan h1 {
+    border-bottom: 3px groove;
+}
+
+.Lichaam a {
+    text-decoration: none;
+    color: royalblue;
+}
+.Lichaam a:hover {
+    color: blue;
 }
 
 .Scherm {
     display: grid;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 400px 1fr;
     grid-template-rows: 100%;
-    place-content: stretch/stretch;
+    place-content: stretch stretch;
 }
 
 .MenuBalk {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: repeat(5, 1fr);
-    row-gap: 2px;
+    grid-template-rows: repeat(4, 1fr);
+    row-gap: 4px;
 
     align-content: stretch;
     justify-content: stretch;
 }
 
-.MenuBalk > button, .MenuBalk button{
-    border: 2px;
+.MenuBalk button {
+    border: 3px;
     border-style: solid;
-    border-radius: 5px;
+    border-radius: 10px;
     border-color: gray;
+
+    font-size: xx-large;
+    color: darkblue;
 }
 
-.MenuBalk > a {
+.MenuBalk > a{
     display: grid;
     align-content: stretch;
     justify-content: stretch;
@@ -54,4 +93,5 @@ button:hover{
     cursor: pointer;
     border-color: black;
     background-color: lightgray;
+    font-weight: bold;
 }

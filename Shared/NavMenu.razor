@@ -1,8 +1,8 @@
-﻿<button @onclick="ToonMenu">Menu</button>
-<a href="/">
-    <button>Hoofd<br>Scherm</button>
+﻿<div class="MenuBalk">
+<a href="">
+    <button>HoofdScherm</button>
 </a>
-<a href="/Plan">
+<a href="Plan">
     <button>Plan</button>
 </a>
 <a href="https://github.com/HuskyNator/BlazorPage">
@@ -11,15 +11,4 @@
 <a href="#">
     <button>#</button>
 </a>
-
-@code {
-    private bool zichtbaar = true;
-
-    //private string MenuBalk => zichtbaar ? "MenuBalk" : null;
-
-    private void ToonMenu()
-    {
-        zichtbaar = !zichtbaar;
-    }
-    
-}
+</div>
