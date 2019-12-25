@@ -1,0 +1,51 @@
+<link href="css/rekenmachine.css" rel="stylesheet">
+<div id="RekenMachine">
+    <div id="Scherm">
+        <div id="Resultaat">
+            @(resultaat.ToString("0.0"))
+        </div>
+        <div id="Keuzes">
+            <button @onclick=@(()=>kiesSoort('+'))>+</button>
+            <button @onclick=@(()=>kiesSoort('-'))>-</button>
+            <button @onclick=@(()=>kiesSoort('×'))>×</button>
+            <button @onclick=@(()=>kiesSoort('÷'))>÷</button>
+        </div>
+        <div id="Getallen">
+            @for(float i=0; i<9; i++){
+                <button @onclick=@(()=>kiesGetal(@i))>@i</button>
+            }
+            <div></div>
+            <button @onclick=@(()=>kiesGetal(9))>9</button>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+@code{
+    private char soort = '+';
+    private float getal1 = -1;
+    private float resultaat = 0;
+    
+    private void kiesGetal(float getal){
+        if(getal1==-1) getal1=getal;
+        else {resultaat = operatie(getal1, getal); getal1 = resultaat;}
+    }
+    private void kiesSoort(char soort){
+        this.soort = soort;
+    }
+
+    private float operatie(float getal1, float getal2){
+        switch(soort){
+            case '+':
+                return getal1 + getal2;
+            case '-':
+                return getal1 - getal2;
+            case '×':
+                return getal1 * getal2;
+            case '÷':
+                return getal1 / getal2;
+            default:
+                return float.NegativeInfinity; // iets fout
+        }
+    } 
+}

@@ -1,11 +1,7 @@
-﻿html, app {
+﻿html, app, body {
     height: 100%;
     text-align: center;
     background-color: deepskyblue;
-}
-
-body {
-    height: 40%;
 }
 
 .Scherm {
@@ -13,21 +9,21 @@ body {
     min-height: 100%;
     height: 100%;
     width: 100%;
+
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 100%;
+    place-content: stretch stretch;
 }
 
 .Lichaam {
-    background-color: lightgray;
+    background-color: white;
+    height: 90%;
+    margin-left: 8px;
     border: 3px;
     border-radius: 5px;
     border-style: solid;
     border-color: gray;
-    margin-left: 8px;
-}
-
-#Plan{
-    display: grid;
-    grid-template-columns: 1fr 550px 1fr;
-    grid-template-rows: 1fr;
 }
 
 .Lichaam ul {
@@ -55,14 +51,14 @@ body {
     color: blue;
 }
 
-.Scherm {
+#Plan{
     display: grid;
-    grid-template-columns: 400px 1fr;
-    grid-template-rows: 100%;
-    place-content: stretch stretch;
+    grid-template-columns: 1fr 550px 1fr;
+    grid-template-rows: 1fr;
 }
 
 .MenuBalk {
+    height: 40%;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: repeat(4, 1fr);
@@ -89,9 +85,13 @@ body {
     text-decoration-line: none;
 }
 
+button {
+    background-color: white;
+}
+
 button:hover{
     cursor: pointer;
     border-color: black;
-    background-color: lightgray;
+    background-color: whitesmoke;
     font-weight: bold;
 }
