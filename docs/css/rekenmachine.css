@@ -29,6 +29,8 @@
 #Getallen {
     border-top: 2px solid gray;
     padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);

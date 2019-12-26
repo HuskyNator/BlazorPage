@@ -12,7 +12,8 @@
         </div>
         <div id="Getallen">
             @for(float i=0; i<9; i++){
-                <button @onclick=@(()=>kiesGetal(@i))>@i</button>
+                float getal = i;
+                <button @onclick=@(()=>kiesGetal(getal))>@i</button>
             }
             <div></div>
             <button @onclick=@(()=>kiesGetal(9))>9</button>
@@ -26,15 +27,15 @@
     private float getal1 = -1;
     private float resultaat = 0;
     
-    private void kiesGetal(float getal){
+    public void kiesGetal(float getal){
         if(getal1==-1) getal1=getal;
         else {resultaat = operatie(getal1, getal); getal1 = resultaat;}
     }
-    private void kiesSoort(char soort){
+    public void kiesSoort(char soort){
         this.soort = soort;
     }
 
-    private float operatie(float getal1, float getal2){
+    public float operatie(float getal1, float getal2){
         switch(soort){
             case '+':
                 return getal1 + getal2;
