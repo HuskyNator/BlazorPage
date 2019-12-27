@@ -24,13 +24,8 @@
     border-radius: 5px;
     border-style: solid;
     border-color: gray;
-}
-
-.Lichaam ul {
-    justify-content: space-around;
-    display: grid;
-    font-size: xx-large;
-    text-align: left;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 .Lichaam h1 {
@@ -41,6 +36,13 @@
 
 #Plan h1 {
     border-bottom: 3px groove;
+}
+
+#Plan ul {
+    justify-content: space-around;
+    display: grid;
+    font-size: xx-large;
+    text-align: left;
 }
 
 .Lichaam a {

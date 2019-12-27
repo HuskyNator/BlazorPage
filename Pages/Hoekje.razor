@@ -1,0 +1,41 @@
+@page "/Hoekje"
+<link href="css/hoekje.css" rel="stylesheet">
+
+<div id="Hoekje">
+
+<h1>Scherm</h1>
+<h2>GLFW</h2>
+    <p>
+    Voordat ingegaan kan worden moet voor OpenGL een 'context' bestaan om gebruik van te maken, dit bewaart allerlij informatie van OpenGL, en is dikwijls deel van een scherm.
+    Om een scherm te maken moet gebruik gemaakt worden van ofwel systeem specifieke functies of een bibliotheek.
+    Een veelgebruikte bibliotheek hiervoor is GLFW (Graphic Libarary FrameWork) welk niet systeemspecifiek is, dit wordt intern geregeld, dit vereenvoudigd alles behoorlijk.
+    </p>
+
+<h2>Gebruik</h2>
+<div id="Gebruik">
+<div> <!--Tekst-->
+    <p>
+    Glfw moet voor gebruik geinitialiseerd worden, eveneens moet het na gebruik getermineerd worden om gebruikt geheugen vrij te maken.
+    Dit gebeurt met <code>Init()</code> en <code>Terminate()</code>.
+    <br>
+    Om het scherm zelf te maken wordt gebruik gemaakt van <code>CreateWindow(b, h, n, m, s)</code>, welk vereist:
+    </p>
+    <ul>
+        <li>een breedte</li>
+        <li>een hoogte</li>
+        <li>een naam</li>
+        <li>een monitor, indien fullscreen gebruikt wordt</li>
+        <li>een ander scherm, indien meerdere schermen dezelfde 'context' delen</li>
+    </ul>
+    <p>
+    De instellingen voor dit scherm worden voordat het geschapen wordt aangepast met behulp van <code>WindowHint(hint, waarde)</code>,
+    dit geldt ook voor de OpenGL versie welk gebruikt zal worden voor het scherm.
+    Om vervolgens dit scherm te gebruiken moet <code>MakeContextCurrent(scherm)</code> gebruikt worden.
+    </p>
+</div>
+
+<!--Code-->
+<img src="afbeeldingen/glfw.png">
+</div>
+
+</div>
