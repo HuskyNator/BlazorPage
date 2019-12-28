@@ -18,29 +18,29 @@
 
 .Lichaam {
     background-color: white;
-    height: 90%;
+    height: fit-content;
     margin-left: 8px;
     border: 3px;
     border-radius: 5px;
     border-style: solid;
     border-color: gray;
-}
-
-.Lichaam ul {
-    justify-content: space-around;
-    display: grid;
-    font-size: xx-large;
-    text-align: left;
+    padding: 1em;
 }
 
 .Lichaam h1 {
-    padding-top: 20px;
     margin-top: 0;
     font-size: 4em;
 }
 
 #Plan h1 {
     border-bottom: 3px groove;
+}
+
+#Plan ul {
+    justify-content: space-around;
+    display: grid;
+    font-size: xx-large;
+    text-align: left;
 }
 
 .Lichaam a {

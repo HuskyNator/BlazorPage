@@ -18,18 +18,16 @@
 
 .Lichaam {
     background-color: white;
-    height: 90%;
+    height: fit-content;
     margin-left: 8px;
     border: 3px;
     border-radius: 5px;
     border-style: solid;
     border-color: gray;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding: 1em;
 }
 
 .Lichaam h1 {
-    padding-top: 20px;
     margin-top: 0;
     font-size: 4em;
 }

@@ -11,31 +11,51 @@
     Een veelgebruikte bibliotheek hiervoor is GLFW (Graphic Libarary FrameWork) welk niet systeemspecifiek is, dit wordt intern geregeld, dit vereenvoudigd alles behoorlijk.
     </p>
 
-<h2>Gebruik</h2>
-<div id="Gebruik">
-<div> <!--Tekst-->
-    <p>
-    Glfw moet voor gebruik geinitialiseerd worden, eveneens moet het na gebruik getermineerd worden om gebruikt geheugen vrij te maken.
-    Dit gebeurt met <code>Init()</code> en <code>Terminate()</code>.
-    <br>
-    Om het scherm zelf te maken wordt gebruik gemaakt van <code>CreateWindow(b, h, n, m, s)</code>, welk vereist:
-    </p>
-    <ul>
-        <li>een breedte</li>
-        <li>een hoogte</li>
-        <li>een naam</li>
-        <li>een monitor, indien fullscreen gebruikt wordt</li>
-        <li>een ander scherm, indien meerdere schermen dezelfde 'context' delen</li>
-    </ul>
-    <p>
-    De instellingen voor dit scherm worden voordat het geschapen wordt aangepast met behulp van <code>WindowHint(hint, waarde)</code>,
-    dit geldt ook voor de OpenGL versie welk gebruikt zal worden voor het scherm.
-    Om vervolgens dit scherm te gebruiken moet <code>MakeContextCurrent(scherm)</code> gebruikt worden.
-    </p>
+<h2>Leeg Scherm</h2>
+<div class="twee_luik">
+    <div> <!--Tekst-->
+        <p>
+        Glfw moet voor gebruik geinitialiseerd worden, eveneens moet het na gebruik getermineerd worden om gebruikt geheugen vrij te maken. <br>
+        Dit gebeurt met <code>Init()</code> en <code>Terminate()</code>.
+        Om het scherm zelf te maken wordt gebruik gemaakt van <code>CreateWindow(b, h, n, m, s)</code>, welk vereist:
+        </p>
+        <ul>
+            <li>Een breedte.</li>
+            <li>Een hoogte.</li>
+            <li>Een naam.</li>
+            <li>Een monitor, indien fullscreen gebruikt wordt.</li>
+            <li>Een ander scherm, indien meerdere schermen dezelfde 'context' delen.</li>
+        </ul>
+        <p>
+        De instellingen voor dit scherm worden voordat het geschapen wordt aangepast met behulp van <code>WindowHint(hint, waarde)</code>,
+        dit geldt ook voor de OpenGL versie welk gebruikt zal worden voor het scherm.
+        Om vervolgens dit scherm te gebruiken moet <code>MakeContextCurrent(scherm)</code> gebruikt worden.
+        </p>
+    </div>
+
+    <!--Code-->
+    <div>
+        <img src="afbeeldingen/glfw.png">
+        <p class="onderschrift">Maakt een leeg scherm aan (met OpenGL core 4.3).</p>
+    </div>
 </div>
 
-<!--Code-->
-<img src="afbeeldingen/glfw.png">
+<h2>Lus</h2>
+<div class="twee_luik">
+    <div> <!--Tekst-->
+        <p>
+            Natuurlijk is het niet de bedoeling een leeg scherm te maken en het daar bij te laten,
+            er zal herhaaldelijk iets op het scherm getekend moeten worden. <br>
+            Wat dit is is afhankelijk van de toepassing, echter is de basis structuur hetzelfde:
+        </p>
+        <ul>
+            <li>Een lus voorwaarde.</li>
+            <li>Programma code (includeert tekenen).</li>
+            <li>Buffer wisseling.</li>
+            <li>Evenementen verwerken.</li>
+        </ul>
+    </div>
+    <img src="afbeeldingen/lus.png">
 </div>
 
 </div>
