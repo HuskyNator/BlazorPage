@@ -1,41 +1,46 @@
 <link href="css/rekenmachine.css" rel="stylesheet">
 <div id="RekenMachine">
-    <div id="Scherm">
-        <div id="Resultaat">
+    <div id="R_Scherm">
+        <div id="R_Resultaat">
             @(resultaat.ToString("0.0"))
         </div>
-        <div id="Keuzes">
+        <div id="R_Keuzes">
             <button @onclick=@(()=>kiesSoort('+'))>+</button>
             <button @onclick=@(()=>kiesSoort('-'))>-</button>
             <button @onclick=@(()=>kiesSoort('×'))>×</button>
             <button @onclick=@(()=>kiesSoort('÷'))>÷</button>
         </div>
-        <div id="Getallen">
+        <div id="R_Getallen">
             @for(float i=0; i<9; i++){
                 float getal = i;
                 <button @onclick=@(()=>kiesGetal(getal))>@i</button>
             }
             <div></div>
             <button @onclick=@(()=>kiesGetal(9))>9</button>
-            <div></div>
+            <button @onclick="legen" style="font-size:xx-small;">CLR</button>
         </div>
     </div>
 </div>
 
 @code{
     private char soort = '+';
-    private float getal1 = -1;
+    private float getal1 = float.NaN;
     private float resultaat = 0;
     
-    public void kiesGetal(float getal){
-        if(getal1==-1) getal1=getal;
+    private void legen(){
+        getal1 = float.NaN;
+        resultaat = 0;
+    }
+    
+    private void kiesGetal(float getal){
+        if(float.IsNaN(getal1)) getal1=getal;
         else {resultaat = operatie(getal1, getal); getal1 = resultaat;}
     }
-    public void kiesSoort(char soort){
+    private void kiesSoort(char soort){
         this.soort = soort;
     }
 
-    public float operatie(float getal1, float getal2){
+    private float operatie(float getal1, float getal2){
         switch(soort){
             case '+':
                 return getal1 + getal2;

@@ -1,12 +1,10 @@
-
 #RekenMachine {
     display: grid;
     justify-content: center;
-
     text-align: center;
 }
 
-#Scherm {
+#R_Scherm {
     border-width: 2px;
     border-style: solid;
     border-radius: 4px;
@@ -14,26 +12,27 @@
     height: fit-content;
 }
 
-#Resultaat {
+#R_Resultaat {
     height: 1.2em;
     border-bottom: 2px solid gray;
 }
 
-#Keuzes {
+#R_Keuzes {
     height: 1.5em;
-    
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
 
-#Getallen {
+#R_Getallen {
     border-top: 2px solid gray;
-    padding-bottom: 1px;
-    padding-left: 1px;
-    padding-right: 1px;
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1.5em);
 }
 
+#R_Getallen button {
+    border-radius: 5px;
+}
+#R_Keuzes button {
+    border-radius: 0px;
+}

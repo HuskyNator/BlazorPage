@@ -1,0 +1,34 @@
+﻿<link href="css/menubalk.css" rel="stylesheet">
+<div id="MenuBalk">
+    <a href="">
+        <button>Voorblad</button>
+    </a>
+    <a href="Plan">
+        <button>Plan</button>
+    </a>
+    <a href="https://github.com/HuskyNator/BlazorPage">
+        <button>Github</button>
+    </a>
+    <div>
+        <button @onclick="wisselHoekjeBalk">
+            Hoekje<br>
+            <p id="pijl_omlaag">v</p>
+        </button>
+    </div>
+        <a href="Scherm" style=@zichtbaarStijl class="HoekjeKnop">
+            <button>Scherm</button>
+        </a>
+        <a href="#" style=@zichtbaarStijl class="HoekjeKnop">
+            <button>#</button>
+        </a>
+</div>
+
+@code{
+    private string zichtbaarStijl = "visibility: hidden;";
+    private string andereStijl = "visibility: visible;";
+    private void wisselHoekjeBalk(){
+        string tijdl = zichtbaarStijl;
+        zichtbaarStijl = andereStijl;
+        andereStijl = tijdl;
+    }
+}
