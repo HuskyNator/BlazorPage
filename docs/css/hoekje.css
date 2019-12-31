@@ -1,14 +1,19 @@
-#Hoekje {
+.Hoekje {
     text-align: left;
 }   
 
-#Hoekje h1 {
+.Hoekje h1 {
     text-align: center;
+    width: fit-content;
+    padding: 0px;
     margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
     font-size: xx-large;
+    border-bottom: solid 3px lightgray;
 }
 
-#Hoekje h2 {
+.Hoekje h2 {
     margin: 0;
     padding-left: 5px;
     padding-right: 5px;
@@ -17,24 +22,34 @@
     font-size: medium;
 }
 
-#Hoekje p > code {
-    background-color: gray;
-    color: whitesmoke;
+.Hoekje code {
+    background-color: black;
+    color: deepskyblue;
+    border-radius: 5px;
+    padding: 2px;
 }
 
-#Hoekje .twee_luik {
+.Hoekje .twee_luik {
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: 1fr;
-    justify-content: space-between;
+    column-gap: 1em;    
 }
 
-#Hoekje img {
+.Hoekje img {
     border: 2px solid gray;
     border-radius: 10px;
+    max-width: 100%;
 }
 
-#Hoekje .onderschrift {
+.Hoekje .afbeelding {
+    width: fit-content;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.Hoekje .onderschrift {
     text-align: center;
     padding: 0;
     margin: 0;
@@ -42,12 +57,3 @@
     border: 2px double lightgray;
     border-top: 0;
 }
-
-/* #Hoekje pre {
-    border-color: lightgray;
-    border-radius: 5px;
-    border-style: solid;
-    width: fit-content;
-    height: fit-content;
-    padding: 1em;
-} */

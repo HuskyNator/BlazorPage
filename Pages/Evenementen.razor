@@ -1,0 +1,71 @@
+@page "/Evenementen"
+<link href="css/hoekje.css" rel="stylesheet">
+<div class="Hoekje">
+
+<h1>Evenementen</h1>
+    <p style="text-align:center; font-style:italic;">
+        Onder de term 'evenementen' valt zowel invoer van een invoerapparaat (toetsenbord etc.), als ook indirectere gebeurtenissen, zoals scherm verschuiving.
+    </p>
+    <h2>Invoer</h2>
+    <p>
+        Er zijn een aantal manieren om invoer te verwerken.
+        Soms wordt dit handmatig gedaan, door gebruik te maken van <code>Glfw.GetKey</code>, <code>Glfw.GetCursorPosition</code> en <code>Glfw.GetMouseButton</code>.
+        Echter kan ook gebruik gemaakt worden van terugroep functies, welk opgeroept wordt zodra een toets gebruikt wordt. Er zijn een aantal soorten, meer hierover op: <a href="https://www.glfw.org/docs/latest/input_guide.html">glfw's invoer documentatie</a>.
+        Belangrijke zijn: <code>Glfw.SetKeyCallback</code>, <code>Glfw.SetCursorPosCallback</code> en <code>Glfw.SetMouseButtonCallback</code>.
+    </p>
+    <p> <!--Voorbeeld-->
+        Hier volgt een specifiek voorbeeld. Stel men wilt dat het scherm gesloten wordt zodra de ESC toets ingedrukt wordt.
+        Om dit gedrag te bereiken kunnen, zoals eerder vermeld, twee benaderingen gevolgd worden.
+    </p>
+    <div class="twee_luik" style="grid-template-columns: 2fr 3fr"> <!--Twee mogelijkheden-->
+        <div class="afbeelding">
+            <img src="afbeeldingen/Evenementen/toetslezen.png">
+            <p class="onderschrift">Men kan elke lus handmatig een toets uitlezen.</p>
+        </div>
+        <div class="afbeelding">
+            <img src="afbeeldingen/Evenementen/toetsherroeper.png">
+            <p class="onderschrift">Of men kan gebruik maken van herroeping. (vereist wel pointer gebruik)</p>
+        </div>
+    </div>
+
+    <h2>Toelichting</h2>
+    <ol>
+        <li>Toets Uitlezen</li>
+        <p>
+            Het uitlezen van een toets is een vrij eenvoudige benadering. Echter heeft deze benadering zijn tekortkomingen.
+            Op elk moment int de lus kan namelijk de staat van de toets veranderen, en bij het uitlezen wordt enkel de laatste staatsverandering gezien.
+            Het is dus met pech mogelijk om invoer te missen, zo zal bij voorbeeld een snel in & losgelaten toets mogelijk enkel geregistreerd worden als losgelaten,
+            dit is overigens dezelfde staat als degene als welk oningedrukte toetsen zullen lezen.
+            Om dit te voorkomen kan men mogelijk glfw plaktoetsen gebruiken, welk 'ingedrukt' blijven tot ze losgelaten en vervolgens gelezen zijn.
+            Hier na veranderen ze terug naar 'losgelaten'.
+        </p>
+        <li>Toets Terugroepen</li>
+        <p>
+            Persoonlijk gaat mijn voorkeur naar deze benadering, al ziet het er op eerste aanzicht enger uit.
+            Allereest moet verduidelijkt worden:
+            <ul>
+                <li><code>IntPtr</code> is een soort pointer klasse in C#, meer over verwijzingen & pointers op <a href="https://www.tutorialspoint.com/cprogramming/c_pointers.htm">Tutorialspoint</a>.</li>
+                <li><code>scanCode</code> is een platform specifiek getal welk voor elke toets bestaat, handig voor toetsen die GLFW niet kent, handig bij het koppelen van toetsen door gebruikers.</li>
+                <li><code>ModifierKeys</code> geeft aan of de toetsen shift, ctrl, alt, super (windows/apple/super), capslock of numlock ingedrukt waren tijdens het indrukken van de toets.</li>
+                <li><code>Marshal</code> is deel van 'System.Runtime.InteropServices', en wordt oa. gebruikt om om te gaan met IntPtr's. Als alternatief voor het gebruiken van normale 'onveilige' pointer code.</li>
+            </ul>            
+        </p>
+    </ol>
+
+    <h2>Indirecte invoer</h2>
+    <p>
+        Een belangrijk voorbeeld is het veranderen van de grootte van het scherm, of het verschuiven hiervan.
+        Voor scherm specifieke evenementen kan men kijken op: <a href="https://www.glfw.org/docs/latest/window_guide.html#window_events">glfw's scherm documentatie</a>.<br>
+        Aan <code>Glfw.SetWindowSizeCallback</code> is hieronder een voorbeeld toegeweid.<br>
+        Samengevat zorgt deze hoerroeping er voor dat, telkens wanneer het scherm van grootte verandert, OpenGL hiervan op de hoogte wordt gesteld,
+        zodat de inhoud van het scherm daadwerkelijk meeverandert met de 'lijst'.
+    </p>
+    <div class="afbeelding">
+        <img src="afbeeldingen/schermherroeper.png">
+        <p class="onderschrift">SizeCallback, welk OpenGL informeert over schermgrootte verandering.</p>
+    </div>
+    <div class="afbeelding">
+        <img src="afbeeldingen/schermherroepergebruiken.png">
+        <p class="onderschrift">Stelt deze herroeper in voor gebruik met dit scherm. (voor de lus)</p>
+    </div>
+</div>

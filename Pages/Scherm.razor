@@ -1,7 +1,6 @@
 @page "/Scherm"
 <link href="css/hoekje.css" rel="stylesheet">
-
-<div id="Hoekje">
+<div class="Hoekje">
 
 <h1>Scherm</h1>
 <h2>GLFW</h2>
@@ -30,6 +29,9 @@
         De instellingen voor dit scherm worden voordat het geschapen wordt aangepast met behulp van <code>WindowHint(hint, waarde)</code>,
         dit geldt ook voor de OpenGL versie welk gebruikt zal worden voor het scherm.
         Om vervolgens dit scherm te gebruiken moet <code>MakeContextCurrent(scherm)</code> gebruikt worden.
+        Ten slotte zal OpenGl verteld moeten worden over de omvang van het scherm waarop het moet tekenen, dit gebeurt met <code>Gl.ViewPort(x,y,b,h)</code>,
+        waarbij x,y de linker onderhoek (oorsprong) van dit scherm beschrijven, en b,h de breedte en hoogte.
+        Om gebruik te maken van het hele scherm zou men dus moeten gebruiken: <code>Gl.ViewPort(0,0,800,600)</code>.
         </p>
     </div>
 
@@ -46,7 +48,7 @@
         <p>
             Natuurlijk is het niet de bedoeling een leeg scherm te maken en het daar bij te laten,
             er zal herhaaldelijk iets op het scherm getekend moeten worden. <br>
-            Wat dit is is afhankelijk van de toepassing, echter is de basis structuur hetzelfde:
+            Wat is afhankelijk van de toepassing, echter is de basis structuur hetzelfde:
         </p>
         <ul>
             <li>Een lus voorwaarde.</li>
@@ -57,5 +59,18 @@
     </div>
     <img src="afbeeldingen/lus.png">
 </div>
-
+    <p>
+        Voor de lus wordt dikwijls <code>WindowShouldClose(scherm)</code> gebruikt, welk aangeeft of een verzoek tot sluiten is afgegeven (alt+f4 en dergelijke).
+    </p>
+    <p>
+        'Bufferwisseling' is er wegens het normaal gebruikte tweetal kleur 'buffers' (dempgeheugen), welk de kleuren van alle pixels op het scherm representeren.
+        Het tweetal geheugen voorwerpen wordt steeds afgewisseld op het scherm na het volledig betekenen van de vorige. Dit verzekert dat alles juist en volledig op het scherm getoond wordt.
+        Voor een duidelijkere uitleg over het gebruik van een veelvoud geheugenblokken kan men wikipedia bezoeken: <a href="https://en.wikipedia.org/wiki/Multiple_buffering">Multiple_Buffering</a>.
+    </p>
+    <p>
+        Ten slotte worden evenementen verwerkt. GLFW verwerkt hierbij toetsenbord, muis en externe invoer.
+        Een voorbeeld is het sluiten van het scherm (Kruisje). Dit wordt verwerkt door GLFW, waardoor <code>WindowShouldClose(scherm)</code> bij voorbeeld waar aangeeft.
+        Andere voorbeelden zijn het oproepen van 'callback' (terugroep) functies, welk men zelf kan toevoegen voor bijvoorbeeld muis & toetsenbord invoer.
+        Meer hier over op de volgende pagina: <a href="Evenementen">Evenementen</a>.
+    </p>
 </div>
