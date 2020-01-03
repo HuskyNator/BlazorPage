@@ -63,7 +63,7 @@
         Voor de lus wordt dikwijls <code>WindowShouldClose(scherm)</code> gebruikt, welk aangeeft of een verzoek tot sluiten is afgegeven (alt+f4 en dergelijke).
     </p>
     <p>
-        'Bufferwisseling' is er wegens het normaal gebruikte tweetal kleur 'buffers' (dempgeheugen), welk de kleuren van alle pixels op het scherm representeren.
+        'Bufferwisseling' is er wegens het normaal gebruikte tweetal kleur 'buffers' ('dempgeheugen'), welk de kleuren van alle pixels op het scherm representeren.
         Het tweetal geheugen voorwerpen wordt steeds afgewisseld op het scherm na het volledig betekenen van de vorige. Dit verzekert dat alles juist en volledig op het scherm getoond wordt.
         Voor een duidelijkere uitleg over het gebruik van een veelvoud geheugenblokken kan men wikipedia bezoeken: <a href="https://en.wikipedia.org/wiki/Multiple_buffering">Multiple_Buffering</a>.
     </p>
@@ -73,4 +73,19 @@
         Andere voorbeelden zijn het oproepen van 'callback' (terugroep) functies, welk men zelf kan toevoegen voor bijvoorbeeld muis & toetsenbord invoer.
         Meer hier over op de volgende pagina: <a href="Evenementen">Evenementen</a>.
     </p>
+<h2>Achtergrond Tekenen</h2>
+<div class="twee_luik">
+    <p>
+        Een simpel achtergrond kan getekend worden als enkele kleur. Dit door alle kleurbits van het scherm op te schonen, en te vervangen met een soort 'opschoonkleur'.
+        Allereerst zetten we een staat met <code>Gl.ClearColor(r,g,b,a)</code>, dit zal de opschoonkleur zijn. Vervolgens gebruiken we deze staat (kleur) met <code>Gl.Clear(ClearBufferMask)</code>.<br>
+        Er zijn meerdere stukken geheugen (buffers), welk informatie voor alle pixels opslaan en gebruikt worden door het scherm. De verzameling van deze buffers heet de 'framebuffer' (lijstbuffer).
+        Nu is enkel de kleurbuffer van belang.
+    </p>
+    <div class="afbeelding">
+        <img src="afbeeldingen/Scherm/achtergrond.png">
+        <p class="onderschrift">
+            Teken deel van de lus, welk een achtergrondkleur tekent.
+        </p>
+    </div>
+</div>
 </div>
