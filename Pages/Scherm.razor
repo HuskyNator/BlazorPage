@@ -14,9 +14,9 @@
 <div class="twee_luik">
     <div> <!--Tekst-->
         <p>
-        Glfw moet voor gebruik geinitialiseerd worden, eveneens moet het na gebruik getermineerd worden om gebruikt geheugen vrij te maken. <br>
-        Dit gebeurt met <code>Init()</code> en <code>Terminate()</code>.
-        Om het scherm zelf te maken wordt gebruik gemaakt van <code>CreateWindow(b, h, n, m, s)</code>, welk vereist:
+        Glfw en OpenGL moeten voor gebruik geinitialiseerd worden, eveneens moet GLFW na gebruik getermineerd worden om gebruikt geheugen vrij te maken.
+        Dit gebeurt met <code>GLFW.Init()</code>, <code>Gl.Initialize()</code> en <code>GLFW.Terminate()</code>.
+        Om het scherm zelf te maken wordt gebruik gemaakt van <code>Glfw.CreateWindow(b, h, n, m, s)</code>, welk vereist:
         </p>
         <ul>
             <li>Een breedte.</li>
@@ -28,16 +28,14 @@
         <p>
         De instellingen voor dit scherm worden voordat het geschapen wordt aangepast met behulp van <code>WindowHint(hint, waarde)</code>,
         dit geldt ook voor de OpenGL versie welk gebruikt zal worden voor het scherm.
-        Om vervolgens dit scherm te gebruiken moet <code>MakeContextCurrent(scherm)</code> gebruikt worden.
+        Om vervolgens dit scherm te gebruiken moet <code>Glfw.MakeContextCurrent(scherm)</code> gebruikt worden.
         Ten slotte zal OpenGl verteld moeten worden over de omvang van het scherm waarop het moet tekenen, dit gebeurt met <code>Gl.ViewPort(x,y,b,h)</code>,
         waarbij x,y de linker onderhoek (oorsprong) van dit scherm beschrijven, en b,h de breedte en hoogte.
         Om gebruik te maken van het hele scherm zou men dus moeten gebruiken: <code>Gl.ViewPort(0,0,800,600)</code>.
         </p>
     </div>
-
-    <!--Code-->
-    <div>
-        <img src="afbeeldingen/glfw.png">
+    <div class="afbeelding"> <!--Code-->
+        <img src="afbeeldingen/scherm/scherm.png">
         <p class="onderschrift">Maakt een leeg scherm aan (met OpenGL core 4.3).</p>
     </div>
 </div>
@@ -57,10 +55,13 @@
             <li>Evenementen verwerken.</li>
         </ul>
     </div>
-    <img src="afbeeldingen/lus.png">
+    <div class="afbeelding">
+        <img src="afbeeldingen/Scherm/lus.png">
+        <p class="onderschrift">Algemenw lus vorm.</p>
+    </div>
 </div>
     <p>
-        Voor de lus wordt dikwijls <code>WindowShouldClose(scherm)</code> gebruikt, welk aangeeft of een verzoek tot sluiten is afgegeven (alt+f4 en dergelijke).
+        Voor de lus wordt dikwijls <code>Glfw.WindowShouldClose(scherm)</code> gebruikt, welk aangeeft of een verzoek tot sluiten is afgegeven (alt+f4 en dergelijke).
     </p>
     <p>
         'Bufferwisseling' is er wegens het normaal gebruikte tweetal kleur 'buffers' ('dempgeheugen'), welk de kleuren van alle pixels op het scherm representeren.
