@@ -1,0 +1,83 @@
+@page "/Pijplijn"
+<link href="css/hoekje.css" rel="stylesheet">
+<div class="Hoekje">
+<h1>Grafische Pijplijn</h1>
+
+<h2>Algemeen</h2>
+<div class="twee_luik">
+    <div> <!--Tekst-->
+        <p>
+            De grafische pijplijn is hetgeen wat gebruikt wordt bij het 'tekenen' van voorwerpen op het scherm.<br>
+            De informatie die de pijplijn gegeven wordt kan verschillen van soort, maar bevat in ieder geval de 'virtuele' locatie (coördinaten) van de hoeken ('vertices') van simpele vormen.
+            Dikwijls gaat het hierbij om driehoeken, echter is meer mogelijk.<br>
+            Deze coördinaten worden in parallel verwerkt door een grafische processor met behulp van 'shaders'.<br>
+            De naam 'shader' is vrij misleidend, aangezien het eigenlijk gewoon te zien is als een klein programma,
+            bedoeld voor het verwerken van deze coördinaten tot pixel gegevens voor op het scherm.
+        </p>
+
+        <h3>Vertex Shader</h3>
+        <p>
+            De vertex shader een shader welk de 3d hoek locatie die je geeft verwerkt tot een andere 3d locatie,
+            dit heeft te maken met het gebruik van een camera, echter zal meer hier over later volgen.
+            Naast een locatie kan meer zelfgegeven informatie gebruikt/gemaakt worden of doorgegeven worden aan latere shaders.
+            De vertex shader is verplicht voor het tekenen van vormen in opengl (ipv. enkel een achtergrond).
+        </p>
+
+        <h3>Shape Assembly</h3>
+        <p>
+            De 'shape assembly'/'primitive assembly' (vorm verzameling) verzamelt de gegevens van de hoeken van een vorm voor gebruik later in de pijplijn.
+        </p>
+    </div>
+
+    <div class="afbeelding">
+        <img src="afbeeldingen/Pijplijn/RenderingPipeline.png">
+        <p class="onderschrift">
+            OpenGL pijplijn. Enkel blauw is aanpasbaar met shaders.
+        </p>
+    </div>
+</div>
+
+<h3>Geometry Shader</h3>
+        <p>
+            De geometry shader kan gebruik maken van de informatie van elke hoek van een vorm als invoer.
+            De uitvoer van de geometry shader is een veelvoud van vormen (kan zelf kiezen welk soort, hoeft niet dezelfde te zijn).
+            Het is niet meteen duidelijk waar dit nuttig voor is. Een geometry shader is dan ook niet verplicht.
+        </p>
+
+<h3>Rasterization</h3>
+<p>
+    Tijdens rasterizatie wordt de digitale locatie van de vormen geprojecteerd op een 'virtuele' vlak scherm.
+    Hoe dit wordt gedaan is lineaire algebra terrein, en niet noodzakelijk te kennen, maar wel erg interessant.
+    Na projectie wordt het virtuele scherm bij wijze van spreken in stukje gehakken, opdat er voor elke pixel een even groot vak (raster) is,
+    vervolgens wordt voor elk vak gekeken of het midden van dit vak zich bevindt binnen een van de vormen
+    en, indien dit zo is, wordt de informatie die we hebben van de hoeken van deze vorm 'geïnterpoleerd' en doorgegeven aan de fragment shader,
+    wat betekent dat er een soort 'gemiddelde' waarde wordt genomen van alle hoeken.
+</p>
+<p>
+    Meer over projecties op <a href="https://en.wikipedia.org/wiki/Vector_projection">wikipedia</a>.
+    In de praktijk is deze projectie eenvoudiger dan het gebruik van inproducten, na enige uitwerking.<br>
+    Interpolatie kan op veel manieren gedaan worden, maar meestal wordt dit gedaan aan de hand van <a href="https://nl.wikipedia.org/wiki/Barycentrische_co%C3%B6rdinaten">Barycentrische Coördinaten</a>.<br>
+    Meestal worden overigens <a href="https://nl.wikipedia.org/wiki/Matrixvermenigvuldiging">matrix vermenigvuldigingen</a> gebruikt voor veel van de betrokken wiskunde,
+    aangezien er gerekend wordt met coördinaten die <a href="https://nl.wikipedia.org/wiki/Lineaire_afbeelding">getransformeerd</a> moeten worden,
+    dit zal later ook gelden voor veel dat zich af speelt in de vertex shader in verband met het gebruik van een 'virtuele camera'.
+</p>
+
+<h3>Fragment Shader</h3>
+<p>
+    De fragment shader maakt vervolgens gebruikt van de geïnterpoleerde informatie van de hoeken van een vorm om de bijbehorende pixel van een fragment een kleur te geven.
+    Net als de vertex shader is de fragment shader ook verplicht.
+</p>
+
+<h3>Alpha Test & Blending Fase</h3>
+<p>
+    Ten slotte wordt er voor elk fragment gekeken naar de alpha waarde van de kleur (geeft doorzichtigheid aan), en wordt er gekeken of het achter een ander fragment zit.
+    Het is namelijk mogelijk voor meerdere vormen om het middenpunt van een stuk op het scherm te bevatten, wat resulteert in een meervoud van overlappende fragmenten.
+    Deze worden vervolgens met behulp van de alpha waardes verwerkt om een uiteindelijke kleur te verkrijgen
+</p>
+
+<h2>Te veel informatie</h2>
+<p>
+    Aangezien dit alles nogal een hoop informatie is, en er nog meer volgt, <a href="https://youtu.be/Sp0YEzAbTmI">is er hier een leuke video over hoe iemand een gave witcher kist maakt.</a>
+</p>
+
+</div>
