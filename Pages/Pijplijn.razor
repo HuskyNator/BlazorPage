@@ -3,29 +3,100 @@
 <div class="Hoekje">
 <h1>Grafische Pijplijn</h1>
 
-<h2>Algemeen</h2>
+<h2>Voorwerpen</h2>
 <div class="twee_luik">
-    <div> <!--Tekst-->
+    <div class="tekst">
         <p>
-            De grafische pijplijn is hetgeen wat gebruikt wordt bij het 'tekenen' van voorwerpen op het scherm.<br>
-            De informatie die de pijplijn gegeven wordt kan verschillen van soort, maar bevat in ieder geval de 'virtuele' locatie (coördinaten) van de hoeken ('vertices') van simpele vormen.
-            Dikwijls gaat het hierbij om driehoeken, echter is meer mogelijk.<br>
-            Deze coördinaten worden in parallel verwerkt door een grafische processor met behulp van 'shaders'.<br>
+            Voorwerpen in 3d worden dikwijls vertegenwoordigd door een verzameling punten.
+            Deze kunnen losse punten, een verzameling lijnen, driehoeken, of zelfs vierhoeken vertegenwoordigen.
+            In 3d modelleer programma's wordt er bijvoorbeeld vaak gewerkt met vierhoeken ('quads').
+            Standaard in grafische programma's is echter het gebruik van driehoeken.
+            Dit omdat driehoeken een duidelijk oppervlak hebben, terwijl vierkanten onplat kunnen zijn en dus onvoorspelbaar.
+        </p>
+        <p>
+            Modern opengl kan puntenverzamelingen opvatten als punten, lijnen en driehoeken. Vroeger ook vierhoeken maar dit is reeds verwijderd.
+            Om een driehoek te maken hebben we 3 3d punten nodig: een x, y en z getal voor elk. Samen zijn dat er dus 9.
+            De x en y assen gaan van -1 tot 1, anders kom je buiten het scherm, dit geldt ook voor de z as, alles verder weg wordt genegeerd als optimalisatie.
+            Dit geeft ons voor een driehoek dus de getallen rechts.
+        </p>
+        </div>
+    <div class="afbeelding">
+        <img src="afbeeldingen/Pijplijn/driehoek_punten.png">
+        <p class="onderschrift">
+            Een puntenverzameling voor een driehoek.
+        </p>
+    </div>
+</div>
+
+<h2>Buffers</h2>
+    <p class="tekst">
+        Het voorwerp hierboven moeten voor gebruik op de GPU opgeslagen worden in een zogenaamde 'buffer'.
+        Een buffer in opengl is simpelweg een blok geheugen op de GPU, net als een lijst is het gewoon een rij getallen.
+        Om een buffer aan te maken roept men <code>Gl.GenBuffer()</code> aan, welk een <code>uint</code> teruggeeft als verwijsgetal naar deze buffer.
+        Om een buffer verder te gebruiken moeten we hem eerst vastkoppelen aan een van de 'bufferdoeleinden'.
+        Dit komt vaker voor: er zijn functies die werken op meerdere soorten gekoppelde voorwerpen, maar er kan maar 1 voorwerp tegelijk gekoppeld zijn per soort.
+        Er zijn soorten 14 bufferdoeleinden, echter is er nu alleen 1 van belang.
+    </p>
+
+    <h3>Vertex Buffer Object (VBO)</h3>
+<div class="twee_luik" style="align-items:center">
+    <div class="tekst">
+        <p>
+            Het 'ArrayBuffer' doeleinde slaat de hoekpunten van een voorwerp op. Deze wordt daarom vaak een 'Vertex Buffer Object' genoemd (Hoekpunt Buffer Voorwerp).
+            Om te koppelen met de ArrayBuffer gebruiken we: <code>Gl.BindBuffer(BufferTarget.ArrayBuffer, #Buffer)</code>.
+            Ten slotte moeten de gegevens nog overgekopiëerd worden met <code>Gl.BufferData(#Soort, #Bytes, #Gegevens, #Gebruik)</code>.
+        </p>
+
+    <h3>Teken Gebruik</h3>
+        <p>
+            Buffers kunnen verschillende gebruiken hebben, zo zijn er buffers die nooit veranderen, en buffers die gedurende het programma veranderen.
+            Dit wordt aangegeven door 3 soorten gebruiken:
+        </p>
+        <ul>
+            <li><code>BufferUsage.StaticDraw</code></li>
+            <li><code>BufferUsage.DynamicDraw</code></li>
+            <li><code>BufferUsage.SteamDraw</code></li>
+        </ul>
+        <p>
+            Waarbij de eerste haast nooit zal veranderen, de tweede waarschijnlijk vaak, en de laatste elke keer dat het getekend wordt.
+            Deze informatie wordt gebruikt om het soort geheugen (hardware gewijs) te kiezen in de GPU.
+            Naast deze 3 soorten zijn er 6 andere doeleinden, welk dezelfde namen hebben maar 'Read'/'Copy' ipv 'Draw'.
+        </p>
+    </div>
+    <div class="afbeelding">
+        <img src="afbeeldingen/Pijplijn/buffer.png">
+        <p class="onderschrift">
+            Voorwerp gegevens kopiëren naar de GPU.
+        </p>
+    </div>
+</div>
+
+<h2>Shaders</h2>
+<div class="twee_luik">
+    <div class="tekst"> <!--Tekst-->
+        <p>
+            De grafische pijplijn wordt gebruikt bij het 'tekenen' van voorwerpen.
+            De informatie die de pijplijn gegeven wordt kan men zelf bepalen, maar bevat in ieder geval de 'virtuele' locatie van de hoekpunten (vertices).
+            Deze coördinaten worden in parallel verwerkt door een grafische processor met behulp van <b>shaders</b>.
             De naam 'shader' is vrij misleidend, aangezien het eigenlijk gewoon te zien is als een klein programma,
-            bedoeld voor het verwerken van deze coördinaten tot pixel gegevens voor op het scherm.
+            bedoeld voor het verwerken van deze coördinaten tot pixel gegevens voor op het scherm, het is niet enkel voor schaduws.
         </p>
 
         <h3>Vertex Shader</h3>
         <p>
             De vertex shader een shader welk de 3d hoek locatie die je geeft verwerkt tot een andere 3d locatie,
             dit heeft te maken met het gebruik van een camera, echter zal meer hier over later volgen.
-            Naast een locatie kan meer zelfgegeven informatie gebruikt/gemaakt worden of doorgegeven worden aan latere shaders.
-            De vertex shader is verplicht voor het tekenen van vormen in opengl (ipv. enkel een achtergrond).
+            Naast een locatie kunnen meer gegevens gebruikt/gemaakt worden, welk ook doorgegeven kunnen worden aan latere shaders.
+        </p>
+
+        <p class="tekstvak">
+            De vertex shader is verplicht voor het tekenen van vormen in opengl.
         </p>
 
         <h3>Shape Assembly</h3>
         <p>
-            De 'shape assembly'/'primitive assembly' (vorm verzameling) verzamelt de gegevens van de hoeken van een vorm voor gebruik later in de pijplijn.
+            De 'shape assembly'/'primitive assembly' (vorm verzameling) verzamelt de gegevens van de hoeken van een vorm zodat ze samen te gebruiken zijn in de geometry shader.
+            Dit in tegenstelling tot de vertex en fragment shaders welk enkel losse hoekpunten krijgen.
         </p>
     </div>
 
@@ -40,26 +111,23 @@
 <h3>Geometry Shader</h3>
         <p>
             De geometry shader kan gebruik maken van de informatie van elke hoek van een vorm als invoer.
-            De uitvoer van de geometry shader is een veelvoud van vormen (kan zelf kiezen welk soort, hoeft niet dezelfde te zijn).
-            Het is niet meteen duidelijk waar dit nuttig voor is. Een geometry shader is dan ook niet verplicht.
+            De uitvoer van de geometry shader is een veelvoud van vormen. Men kan zelf kiezen welk soort vormen, ongeacht van wat eerder gebruikt is.
+            Het is niet meteen duidelijk waar dit nuttig voor is, een geometry shader is dan ook niet verplicht, echter kan dit heel handig worden.
         </p>
 
 <h3>Rasterization</h3>
 <p>
     Tijdens rasterizatie wordt de digitale locatie van de vormen geprojecteerd op een 'virtuele' vlak scherm.
     Hoe dit wordt gedaan is lineaire algebra terrein, en niet noodzakelijk te kennen, maar wel erg interessant.
-    Na projectie wordt het virtuele scherm bij wijze van spreken in stukje gehakken, opdat er voor elke pixel een even groot vak (raster) is,
-    vervolgens wordt voor elk vak gekeken of het midden van dit vak zich bevindt binnen een van de vormen
-    en, indien dit zo is, wordt de informatie die we hebben van de hoeken van deze vorm 'geïnterpoleerd' en doorgegeven aan de fragment shader,
-    wat betekent dat er een soort 'gemiddelde' waarde wordt genomen van alle hoeken.
+    Na projectie wordt het virtuele scherm bij wijze van spreken in stukje gehakt, opdat er voor elke pixel een even groot vak (raster) is,
+    vervolgens wordt voor elk vak gekeken of het midden van dit vak zich in of dicht genoeg bij een vorm bevindt.
+    Indien dit zo is, wordt de pixel betekent met deze vorm, wat betekent dat de gegevens van de hoeken van deze vorm worden 'geïnterpoleerd' en doorgegeven aan de fragment shader.
 </p>
-<p>
-    Meer over projecties op <a href="https://en.wikipedia.org/wiki/Vector_projection">wikipedia</a>.
-    In de praktijk is deze projectie eenvoudiger dan het gebruik van inproducten, na enige uitwerking.<br>
+
+<p class="tekstvak">
+    Interpolatie is te zien als een gemiddelde neming van alle hoeken, die de afstand tot hoeken gebruikt als gewicht voor hun informatie.
     Interpolatie kan op veel manieren gedaan worden, maar meestal wordt dit gedaan aan de hand van <a href="https://nl.wikipedia.org/wiki/Barycentrische_co%C3%B6rdinaten">Barycentrische Coördinaten</a>.<br>
-    Meestal worden overigens <a href="https://nl.wikipedia.org/wiki/Matrixvermenigvuldiging">matrix vermenigvuldigingen</a> gebruikt voor veel van de betrokken wiskunde,
-    aangezien er gerekend wordt met coördinaten die <a href="https://nl.wikipedia.org/wiki/Lineaire_afbeelding">getransformeerd</a> moeten worden,
-    dit zal later ook gelden voor veel dat zich af speelt in de vertex shader in verband met het gebruik van een 'virtuele camera'.
+    Meer over projecties is te vinden op <a href="https://en.wikipedia.org/wiki/Vector_projection">wikipedia</a>.
 </p>
 
 <h3>Fragment Shader</h3>

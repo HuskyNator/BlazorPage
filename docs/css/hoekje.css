@@ -40,13 +40,14 @@
 .Hoekje .twee_luik {
     display: grid;
     grid-template-columns: auto auto;
-    column-gap: 1em;    
+    column-gap: 1em;
 }
 
 .Hoekje img {
-    border: 2px solid gray;
+    border: 2px solid lightgray;
     border-radius: 10px;
     max-width: 100%;
+    background-color: black;
 }
 
 .Hoekje .afbeelding {
@@ -64,4 +65,11 @@
     font-style: italic;
     border: 2px double lightgray;
     border-top: 0;
+}
+
+.Hoekje .tekstvak {
+    border: 2px solid darkgreen;
+    border-radius: 5px;
+    background-color: forestgreen;
+    padding: 20px;
 }
