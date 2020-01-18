@@ -1,7 +1,7 @@
 ﻿html, app, body {
     height: 100%;
     text-align: center;
-    background-color: deepskyblue;
+    background-color: darkgray;
 }
 
 #Scherm {
@@ -16,13 +16,14 @@
 
 #Lichaam {
     box-sizing: border-box;
-    background-color: white;
+    background-color: lightgray;
+    color: white;
     height: fit-content;
     width: inherit;
     border: 3px;
     border-radius: 5px;
     border-style: solid;
-    border-color: gray;
+    /**border-color: gray;**/
     padding: 1em;
     margin: 0;
 }
