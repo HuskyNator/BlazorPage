@@ -6,7 +6,7 @@
 
 #Scherm {
     margin: 0;
-    height: 100%;
+    margin-bottom: 10px;
 
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -16,14 +16,16 @@
 
 #Lichaam {
     box-sizing: border-box;
-    background-color: lightgray;
+    background-color: darkgray;
     color: white;
     height: fit-content;
     width: inherit;
+    /**
     border: 3px;
     border-radius: 5px;
     border-style: solid;
-    /**border-color: gray;**/
+    border-color: gray;
+    **/
     padding: 1em;
     margin: 0;
 }
