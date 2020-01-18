@@ -1,12 +1,13 @@
 ﻿html, app, body {
     height: 100%;
     text-align: center;
-    background-color: darkgray;
+    background-color: gray;
 }
 
 #Scherm {
     margin: 0;
     margin-bottom: 10px;
+    min-height: 100%;
 
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -16,7 +17,6 @@
 
 #Lichaam {
     box-sizing: border-box;
-    background-color: darkgray;
     color: white;
     height: fit-content;
     width: inherit;
@@ -37,15 +37,16 @@
 
 #Lichaam a {
     text-decoration: none;
-    color: royalblue;
+    color: greenyellow;
 }
+
 #Lichaam a:hover {
-    color: blue;
+    color: darkseagreen;
 }
 
 #MenuBalk {
-    height: 100%;
     margin-right: 8px;
+    border-right: 2px solid lightgray;
 }
 
 button {
